@@ -1,0 +1,75 @@
+{
+    "REQUEST": {
+        "SERVICE": "customer.get"
+    },
+    "RESPONSE": {
+        "CUSTOMERS": [
+            {
+                "CUSTOMER_ID": "6674",
+                "CUSTOMER_NUMBER": "1",
+                "DAYS_FOR_PAYMENT": "0",
+                "CREATED": "2009-12-1714: 46: 51",
+                "PAYMENT_TYPE": "1",
+                "BANK_NAME": "",
+                "BANK_ACCOUNT_NUMBER": "",
+                "BANK_CODE": "",
+                "BANK_ACCOUNT_OWNER": "",
+                "SHOW_PAYMENT_NOTICE": "1",
+                "ACCOUNT_RECEIVABLE": "",
+                "CUSTOMER_TYPE": "business",
+                "TOP": "0",
+                "ORGANIZATION": "Foo GmbH",
+                "POSITION": "",
+                "SALUTATION": "mr",
+                "FIRST_NAME": "Foo",
+                "LAST_NAME": "Bar",
+                "ADDRESS": "Foo Weg 123",
+                "ADDRESS_2": "",
+                "ZIPCODE": "12345",
+                "CITY": "Foobar",
+                "COUNTRY_CODE": "DE",
+                "PHONE": "",
+                "PHONE_2": "",
+                "FAX": "",
+                "MOBILE": "",
+                "EMAIL": "foo@bar.de",
+                "VAT_ID": "",
+                "CURRENCY_CODE": "EUR"
+            },
+            {
+                "CUSTOMER_ID": "6675",
+                "CUSTOMER_NUMBER": "2",
+                "DAYS_FOR_PAYMENT": "0",
+                "CREATED": "2009-12-1714: 47: 58",
+                "PAYMENT_TYPE": "1",
+                "BANK_NAME": "",
+                "BANK_ACCOUNT_NUMBER": "",
+                "BANK_CODE": "",
+                "BANK_ACCOUNT_OWNER": "",
+                "SHOW_PAYMENT_NOTICE": "1",
+                "ACCOUNT_RECEIVABLE": [
+
+                ],
+                "CUSTOMER_TYPE": "business",
+                "TOP": "0",
+                "ORGANIZATION": "Bar",
+                "POSITION": "",
+                "SALUTATION": "",
+                "FIRST_NAME": "",
+                "LAST_NAME": "",
+                "ADDRESS": "Bar Weg 1",
+                "ADDRESS_2": "",
+                "ZIPCODE": "98765",
+                "CITY": "Foo",
+                "COUNTRY_CODE": "DE",
+                "PHONE": "",
+                "PHONE_2": "",
+                "FAX": "",
+                "MOBILE": "",
+                "EMAIL": "",
+                "VAT_ID": "",
+                "CURRENCY_CODE": "EUR"
+            }
+        ]
+    }
+}

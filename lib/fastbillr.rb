@@ -6,4 +6,5 @@ module Fastbillr
   require "hashie"
 
   autoload :Configuration, "fastbillr/configuration"
+  autoload :Request, "fastbillr/request"
 end
