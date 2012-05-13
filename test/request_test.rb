@@ -22,6 +22,10 @@ describe Fastbillr::Request do
     end
   end
 
+  after do
+    Excon.stubs.clear
+  end
+
   describe "private" do
     it "#auth_string" do
       Fastbillr::Request.send(:auth_string).must_equal auth_string
@@ -39,10 +43,17 @@ describe Fastbillr::Request do
   end
 
   describe "http methods" do
-    it "#post" do
-      Excon.stub({:method => :post}, {:body => fixture_file("customer_get.json"), :status => 200})
-      result = Fastbillr::Request.post('{"SERVICE": "customer.get"}')
-      result.status.must_equal 200
+    describe "#post" do
+      it "Status 200" do
+        Excon.stub({:method => :post}, {:body => fixture_file("customer_get.json"), :status => 200})
+        result = Fastbillr::Request.post('{"SERVICE": "customer.get"}')
+        result.must_equal JSON.parse(fixture_file("customer_get.json"))["RESPONSE"]
+      end
+
+      it "Error" do
+        Excon.stub({:method => :post}, {:body => fixture_file("unauthorized_error.json"), :status => 401})
+        -> { Fastbillr::Request.post('{"SERVICE": "customer.get"}') }.must_raise(Fastbillr::Error)
+      end
     end
   end
 

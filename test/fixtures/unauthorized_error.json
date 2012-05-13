@@ -1,0 +1,10 @@
+{
+    "REQUEST": {
+        "SERVICE": "customer.get"
+    },
+    "RESPONSE": {
+        "ERRORS": [
+            "LoginError: WrongAPIKEYorusercredentials."
+        ]
+    }
+}

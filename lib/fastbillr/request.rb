@@ -3,7 +3,7 @@ module Fastbillr
     class << self
 
       def post(body = "")
-        connection.post(body: body)
+        Result.process(connection.post(body: body))
       end
 
       private
