@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Run the test suite
 
-    $ ruby -Ilib test/*
+    $ rake
 
 ## Usage
 
