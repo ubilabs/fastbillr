@@ -1,14 +1,5 @@
 require File.expand_path("../test_helper", __FILE__)
 
-module Fastbillr
-  class Request
-    private
-      def self.connection
-        Excon.new(Configuration.base_url, :headers => header, mock: true)
-      end
-  end
-end
-
 describe Fastbillr::Request do
   let(:email) { "test@test.com" }
   let(:api_key) { "kjashd87hjdsh87huaiduh87hdhkasdjh87" }
@@ -45,9 +36,9 @@ describe Fastbillr::Request do
   describe "http methods" do
     describe "#post" do
       it "Status 200" do
-        Excon.stub({:method => :post}, {:body => fixture_file("customer_get.json"), :status => 200})
+        Excon.stub({:method => :post}, {:body => fixture_file("customers.json"), :status => 200})
         result = Fastbillr::Request.post('{"SERVICE": "customer.get"}')
-        result.must_equal JSON.parse(fixture_file("customer_get.json"))["RESPONSE"]
+        result.must_equal JSON.parse(fixture_file("customers.json"))["RESPONSE"]
       end
 
       it "Error" do
