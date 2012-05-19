@@ -2,6 +2,8 @@
 
 Ruby API wrapper for the fastbill.com API
 
+NOTE: This is work in progress and not yet available as a gem.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -10,11 +12,11 @@ Add this line to your application's Gemfile:
 
 And then execute:
 
-    $ bundle
+    bundle
 
 Or install it yourself as:
 
-    $ gem install fastbillr
+    gem install fastbillr
 
 ## Usage
 
@@ -40,13 +42,13 @@ Or install it yourself as:
     Fastbillr::Customer.search("foo")
 
 #### Create a new customer
-There are different required fields depending on e.g. customer_type. Please refer the fastbill api documentation.
-    
+There are different required fields depending on e.g. customer_type. Please have a look at the fastbill api documentation.
+
     Fastbillr::Customer.create(last_name: "foo", firstname: "bar")
 
 ## Run the test suite
 
-    $ rake
+    rake
 
 ## Contributing
 
