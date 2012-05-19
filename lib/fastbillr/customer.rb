@@ -31,6 +31,20 @@ module Fastbillr
         response = Fastbillr::Request.post({"SERVICE" => "customer.get", "FILTER" => {"TERM" => term}}.to_json)
         response["CUSTOMERS"].collect { |customer| new(customer) }
       end
+
+      def create(params)
+        customer = new(params)
+        response = Fastbillr::Request.post({"SERVICE" => "customer.create", "DATA" => customer.to_uppercase_attribute_names}.to_json)
+        customer.id = response["CUSTOMER_ID"]
+        customer
+      end
+    end
+
+    def to_uppercase_attribute_names
+      self.to_hash.inject({}) do |result, (key, value)|
+        result[key.upcase] = value
+        result
+      end
     end
 
   end
