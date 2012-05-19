@@ -1,8 +1,8 @@
-# Fastbillr
+# Fastbillr [![Build Status](https://secure.travis-ci.org/suchasurge/rjiffy.png)](http://travis-ci.org/suchasurge/fastbillr)
 
 Ruby API wrapper for the fastbill.com API
 
-NOTE: This is work in progress and not yet available as a gem.
+__NOTE__: This is work in progress and not yet available as a gem.
 
 ## Installation
 
