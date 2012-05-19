@@ -2,13 +2,13 @@ module Fastbillr
   class Customer < Hashie::Trash
 
     property :id, from: :CUSTOMER_ID
-    UPERCASE_METHOD_NAMES = [
+    UPPERCASE_METHOD_NAMES = [
       :CUSTOMER_NUMBER, :DAYS_FOR_PAYMENT, :CREATED, :PAYMENT_TYPE, :BANK_NAME, :BANK_ACCOUNT_NUMBER,
       :BANK_CODE, :BANK_ACCOUNT_OWNER, :SHOW_PAYMENT_NOTICE, :ACCOUNT_RECEIVABLE, :CUSTOMER_TYPE,
       :TOP, :ORGANIZATION, :POSITION, :SALUTATION, :FIRST_NAME, :LAST_NAME, :ADDRESS, :ADDRESS_2,
       :ZIPCODE, :CITY, :COUNTRY_CODE, :PHONE, :PHONE_2, :FAX, :MOBILE, :EMAIL, :VAT_ID, :CURRENCY_CODE
     ]
-    UPERCASE_METHOD_NAMES.each do |method_name|
+    UPPERCASE_METHOD_NAMES.each do |method_name|
       property method_name.downcase, from: method_name
     end
 
