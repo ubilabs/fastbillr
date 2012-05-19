@@ -22,7 +22,12 @@ Or install it yourself as:
 
 ## Usage
 
-TODO
+### Configuration
+
+    Fastbillr::Configuration.configure do |config|
+      config.email = "your@email.com"
+      config.api_key = "yourverysecretapikey"
+    end
 
 ## Contributing
 
