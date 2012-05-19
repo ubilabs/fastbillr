@@ -29,6 +29,20 @@ Or install it yourself as:
       config.api_key = "yourverysecretapikey"
     end
 
+### Customer
+
+#### Get all customer
+    Fastbillr::Customer.all
+
+#### Find by country code
+    Fastbillr::Customer.find_by_country("de")
+
+#### Find by id
+    Fastbillr::Customer.find_by_id(12)
+
+#### Search by ORGANIZATION, FIRST_NAME, LAST_NAME, ADDRESS, ADDRESS_2, ZIPCODE, EMAIL
+    Fastbillr::Customer.search("foo")
+
 ## Contributing
 
 1. Fork it
