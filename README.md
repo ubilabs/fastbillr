@@ -16,10 +16,6 @@ Or install it yourself as:
 
     $ gem install fastbillr
 
-## Run the test suite
-
-    $ rake
-
 ## Usage
 
 ### Configuration
@@ -42,6 +38,14 @@ Or install it yourself as:
 
 #### Search by ORGANIZATION, FIRST_NAME, LAST_NAME, ADDRESS, ADDRESS_2, ZIPCODE, EMAIL
     Fastbillr::Customer.search("foo")
+
+#### Create a new customer
+There are different required fields depending on e.g. customer_type. Please refer the fastbill api documentation.
+    Fastbillr::Customer.create(last_name: "foo", firstname: "bar")
+
+## Run the test suite
+
+    $ rake
 
 ## Contributing
 
