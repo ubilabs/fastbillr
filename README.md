@@ -44,7 +44,7 @@ Or install it yourself as:
 #### Create a new customer
 There are different required fields depending on e.g. customer_type. Please have a look at the fastbill api documentation.
 
-    Fastbillr::Customer.create(last_name: "foo", firstname: "bar")
+    Fastbillr::Customer.create(last_name: "foo", first_name: "bar")
 
 ## Run the test suite
 
