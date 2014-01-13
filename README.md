@@ -1,4 +1,4 @@
-# Fastbillr [![Build Status](https://secure.travis-ci.org/suchasurge/rjiffy.png)](http://travis-ci.org/suchasurge/fastbillr)
+# Fastbillr [![Build Status](https://secure.travis-ci.org/ubilabs/fastbillr.png)](http://travis-ci.org/ubilabs/fastbillr)
 
 Ruby API wrapper for the fastbill.com API
 
