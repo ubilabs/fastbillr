@@ -26,10 +26,10 @@ describe Fastbillr::Request do
       Fastbillr::Request.send(:header).must_equal header
     end
 
-    it "#connection" do
-      excon_connection = Fastbillr::Request.send(:connection)
-      excon_connection.must_be_instance_of(Excon::Connection)
-      excon_connection.connection[:headers].must_equal header
+    it "#data" do
+      excon_data = Fastbillr::Request.send(:connection)
+      excon_data.must_be_instance_of(Excon::Connection)
+      excon_data.data[:headers].must_equal header
     end
   end
 

@@ -12,6 +12,7 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
+gems
 
 # YARD artifacts
 .yardoc
