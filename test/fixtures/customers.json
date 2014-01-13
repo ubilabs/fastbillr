@@ -14,6 +14,8 @@
                 "BANK_ACCOUNT_NUMBER": "",
                 "BANK_CODE": "",
                 "BANK_ACCOUNT_OWNER": "",
+                "BANK_IBAN": "",
+                "BANK_BIC": "",
                 "SHOW_PAYMENT_NOTICE": "1",
                 "ACCOUNT_RECEIVABLE": "",
                 "CUSTOMER_TYPE": "business",
@@ -34,7 +36,9 @@
                 "MOBILE": "",
                 "EMAIL": "foo@bar.de",
                 "VAT_ID": "",
-                "CURRENCY_CODE": "EUR"
+                "CURRENCY_CODE": "EUR",
+                "NEWSLETTER_OPTIN": "",
+                "LASTUPDATE": ""
             },
             {
                 "CUSTOMER_ID": "6675",
@@ -46,6 +50,8 @@
                 "BANK_ACCOUNT_NUMBER": "",
                 "BANK_CODE": "",
                 "BANK_ACCOUNT_OWNER": "",
+                "BANK_IBAN": "",
+                "BANK_BIC": "",
                 "SHOW_PAYMENT_NOTICE": "1",
                 "ACCOUNT_RECEIVABLE": [
 
@@ -68,7 +74,9 @@
                 "MOBILE": "",
                 "EMAIL": "",
                 "VAT_ID": "",
-                "CURRENCY_CODE": "EUR"
+                "CURRENCY_CODE": "EUR",
+                "NEWSLETTER_OPTIN": "",
+                "LASTUPDATE": ""
             }
         ]
     }

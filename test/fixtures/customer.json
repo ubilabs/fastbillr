@@ -13,6 +13,8 @@
                 "BANK_NAME": "",
                 "BANK_ACCOUNT_NUMBER": "",
                 "BANK_CODE": "",
+                "BANK_IBAN": "",
+                "BANK_BIC": "",
                 "BANK_ACCOUNT_OWNER": "",
                 "SHOW_PAYMENT_NOTICE": "1",
                 "ACCOUNT_RECEIVABLE": "",
@@ -34,7 +36,9 @@
                 "MOBILE": "",
                 "EMAIL": "foo@bar.de",
                 "VAT_ID": "",
-                "CURRENCY_CODE": "EUR"
+                "CURRENCY_CODE": "EUR",
+                "NEWSLETTER_OPTIN": "",
+                "LASTUPDATE": ""
             }
         ]
     }
