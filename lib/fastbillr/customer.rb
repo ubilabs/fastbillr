@@ -47,5 +47,8 @@ module Fastbillr
       end
     end
 
+    def property_exists?(property)
+      self.class.property?(property.to_sym) ? true : false
+    end
   end
 end
