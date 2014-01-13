@@ -24,6 +24,11 @@ module Fastbillr
         new(response["CUSTOMERS"][0])
       end
 
+      def find_by_customer_number(id)
+        response = Fastbillr::Request.post({"SERVICE" => "customer.get", "FILTER" => {"CUSTOMER_NUMBER" => id.to_i}}.to_json)
+        new(response["CUSTOMERS"][0])
+      end
+
       def find_by_country(country_code)
         response = Fastbillr::Request.post({"SERVICE" => "customer.get", "FILTER" => {"COUNTRY_CODE" => country_code.upcase}}.to_json)
         response["CUSTOMERS"].collect { |customer| new(customer) }

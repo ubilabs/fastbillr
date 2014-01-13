@@ -35,6 +35,11 @@ describe Fastbillr::Customer do
         Fastbillr::Customer.find_by_id(expected_customer_id).id.must_equal expected_customer_id
       end
 
+      it "#find_by_customer_number" do
+        expected_customer_number = JSON.parse(fixture_file("customer.json"))["RESPONSE"]["CUSTOMERS"][0]["CUSTOMER_NUMBER"]
+        Fastbillr::Customer.find_by_customer_number(expected_customer_number).customer_number.must_equal expected_customer_number
+      end
+
       it "#search" do
         expected_id = JSON.parse(fixture_file("customer.json"))["RESPONSE"]["CUSTOMERS"][0]["CUSTOMER_ID"]
         Fastbillr::Customer.search("foo").first.id.must_equal expected_id
