@@ -1,5 +1,5 @@
 module Fastbillr
-  class Customer < Hashie::Trash
+  class Customer < Fastbillr::Trash
 
     property :id, from: :CUSTOMER_ID
     UPPERCASE_METHOD_NAMES = [
@@ -10,9 +10,7 @@ module Fastbillr
       :ZIPCODE, :CITY, :COUNTRY_CODE, :PHONE, :PHONE_2, :FAX, :MOBILE, :EMAIL, :VAT_ID,
       :CURRENCY_CODE, :NEWSLETTER_OPTIN, :LASTUPDATE
     ]
-    UPPERCASE_METHOD_NAMES.each do |method_name|
-      property method_name.downcase, from: method_name
-    end
+    downcase_method_names!(UPPERCASE_METHOD_NAMES)
 
     class << self
       def all
@@ -45,17 +43,6 @@ module Fastbillr
         customer.id = response["CUSTOMER_ID"]
         customer
       end
-    end
-
-    def to_uppercase_attribute_names
-      self.to_hash.inject({}) do |result, (key, value)|
-        result[key.upcase] = value
-        result
-      end
-    end
-
-    def property_exists?(property)
-      self.class.property?(property.to_sym) ? true : false
     end
   end
 end
