@@ -49,11 +49,15 @@ describe Fastbillr::Customer do
   end
 
   describe "create, delete, update" do
-    it "#create" do
+    it "#create success" do
       Excon.stub({:method => :post}, {:body => fixture_file("created_customer.json"), :status => 200})
       customer = Fastbillr::Customer.create(last_name: "foo", first_name: "bar", city: "dummy", customer_type: "business", organization: "foobar")
       customer.id.must_equal JSON.parse(fixture_file("created_customer.json"))["RESPONSE"]["CUSTOMER_ID"]
     end
-  end
 
+    it "#create error" do
+      Excon.stub({:method => :post}, {:body => fixture_file("customer_create_error.json"), :status => 200})
+      assert Fastbillr::Customer.create({})[:errors]
+    end
+  end
 end
