@@ -59,5 +59,18 @@ describe Fastbillr::Customer do
       Excon.stub({:method => :post}, {:body => fixture_file("customer_create_error.json"), :status => 200})
       assert Fastbillr::Customer.create({})[:errors]
     end
+
+    it "#update success" do
+      Excon.stub({:method => :post}, {:body => fixture_file("created_customer.json"), :status => 200})
+      customer = Fastbillr::Customer.create(last_name: "foo", first_name: "bar", city: "dummy", customer_type: "business", organization: "foobar")
+      Excon.stub({:method => :post}, {:body => fixture_file("updated_customer.json"), :status => 200})
+      customer.last_name = "Föö"
+      customer = Fastbillr::Customer.update(customer)
+      assert_equal "Föö", customer.last_name
+    end
+
+    it "#update error" do
+      assert_equal({errors: ["id is nil"]}, Fastbillr::Customer.update(Fastbillr::Customer.new({})))
+    end
   end
 end

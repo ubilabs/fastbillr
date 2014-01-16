@@ -1,8 +1,7 @@
 module Fastbillr
   class Customer < Fastbillr::Trash
-
-    property :id, from: :customer_id
     [
+      :customer_id,
       :customer_number, :days_for_payment, :created, :payment_type, :bank_name,
       :bank_account_number, :bank_code, :bank_account_owner, :bank_iban,
       :bank_bic, :show_payment_notice, :account_receivable, :customer_type,
@@ -11,6 +10,8 @@ module Fastbillr
       :fax, :mobile, :email, :vat_id, :currency_code, :newsletter_optin,
       :lastupdate
     ].each {|property| property property }
+
+    alias id customer_id
 
     class << self
       def all
@@ -43,8 +44,21 @@ module Fastbillr
         if response["ERRORS"]
           {errors: response["ERRORS"]}
         else
-          customer.id = response["CUSTOMER_ID"]
+          customer.customer_id = response["CUSTOMER_ID"]
           customer
+        end
+      end
+
+      def update(customer)
+        if customer.id.nil?
+          {errors: ["id is nil"]}
+        else
+          response = Fastbillr::Request.post({"SERVICE" => "customer.update", "DATA" => upcase_keys_in_hashes(customer)}.to_json)
+          if response["ERRORS"]
+            {errors: response["ERRORS"]}
+          else
+            customer
+          end
         end
       end
     end
