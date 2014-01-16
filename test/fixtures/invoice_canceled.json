@@ -1,0 +1,62 @@
+{
+    "REQUEST": {
+        "SERVICE": "invoice.get"
+    },
+    "RESPONSE": {
+        "INVOICES": [
+            {
+                "INVOICE_ID": "976738",
+                "TYPE": "outgoing",
+                "CUSTOMER_ID": "592472",
+                "CUSTOMER_COSTCENTER_ID": "0",
+                "CURRENCY_CODE": "EUR",
+                "TEMPLATE_ID": "2",
+                "INVOICE_NUMBER": "",
+                "INTROTEXT": "Das ist der Einleitungssatz.",
+                "PAID_DATE": "0000-00-00 00:00:00",
+                "IS_CANCELED": "1",
+                "INVOICE_DATE": "2014-01-16",
+                "DUE_DATE": "2014-01-30 00:00:00",
+                "DELIVERY_DATE": "März 2012",
+                "CASH_DISCOUNT_PERCENT": "0.00",
+                "CASH_DISCOUNT_DAYS": "0",
+                "SUB_TOTAL": 1000,
+                "VAT_TOTAL": 190,
+                "VAT_ITEMS": [
+                    {
+                        "VAT_PERCENT": "19.00",
+                        "VAT_VALUE": 190
+                    }
+                ],
+                "ITEMS": [
+                    {
+                        "INVOICE_ITEM_ID": "2231614",
+                        "ARTICLE_NUMBER": "",
+                        "DESCRIPTION": "Postenbezeichnung 1",
+                        "QUANTITY": "10.00",
+                        "UNIT_PRICE": "40.00000000",
+                        "VAT_PERCENT": "19.00",
+                        "VAT_VALUE": 76,
+                        "COMPLETE_NET": 400,
+                        "COMPLETE_GROSS": 476,
+                        "SORT_ORDER": 1
+                    },
+                    {
+                        "INVOICE_ITEM_ID": "2231616",
+                        "ARTICLE_NUMBER": "",
+                        "DESCRIPTION": "Postenbezeichnung 2",
+                        "QUANTITY": "20.00",
+                        "UNIT_PRICE": "30.00000000",
+                        "VAT_PERCENT": "19.00",
+                        "VAT_VALUE": 114,
+                        "COMPLETE_NET": 600,
+                        "COMPLETE_GROSS": 714,
+                        "SORT_ORDER": 2
+                    }
+                ],
+                "TOTAL": 1190,
+                "DOCUMENT_URL": "https://portal.fastbill.com/download/G4Z.SmSoBPKxVFQtV_BrcK-LWlc9j-jp09oFi6tkI3Te8jJQhK8-V4Hscjn_gJmT"
+            }
+        ]
+    }
+}
