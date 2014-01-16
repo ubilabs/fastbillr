@@ -9,6 +9,6 @@ module Fastbillr
   autoload :Request, "fastbillr/request"
   autoload :Result, "fastbillr/result"
   autoload :Error, "fastbillr/error"
-  autoload :Trash, "fastbillr/trash"
+  autoload :Dash, "fastbillr/dash"
   autoload :Customer, "fastbillr/customer"
 end

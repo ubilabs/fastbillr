@@ -1,5 +1,5 @@
 module Fastbillr
-  class Trash < Hashie::Trash
+  class Dash < Hashie::Dash
     class << self
       def new(hash)
         super(downcase_keys_in_hashes(hash))
@@ -34,8 +34,9 @@ module Fastbillr
       end
     end
 
-    def property_exists?(property)
-      self.class.property?(property.to_sym) ? true : false
+    # Override the superclass method in order to not have an exception.
+    def assert_property_exists!(_)
+      # do nothing
     end
   end
 end

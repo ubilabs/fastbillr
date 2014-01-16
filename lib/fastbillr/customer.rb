@@ -1,5 +1,5 @@
 module Fastbillr
-  class Customer < Fastbillr::Trash
+  class Customer < Fastbillr::Dash
     [
       :customer_id,
       :customer_number, :days_for_payment, :created, :payment_type, :bank_name,
