@@ -1,16 +1,16 @@
 module Fastbillr
   class Customer < Fastbillr::Trash
 
-    property :id, from: :CUSTOMER_ID
-    UPPERCASE_METHOD_NAMES = [
-      :CUSTOMER_NUMBER, :DAYS_FOR_PAYMENT, :CREATED, :PAYMENT_TYPE,
-      :BANK_NAME, :BANK_ACCOUNT_NUMBER, :BANK_CODE, :BANK_ACCOUNT_OWNER, :BANK_IBAN, :BANK_BIC,
-      :SHOW_PAYMENT_NOTICE, :ACCOUNT_RECEIVABLE, :CUSTOMER_TYPE,
-      :TOP, :ORGANIZATION, :POSITION, :SALUTATION, :FIRST_NAME, :LAST_NAME, :ADDRESS, :ADDRESS_2,
-      :ZIPCODE, :CITY, :COUNTRY_CODE, :PHONE, :PHONE_2, :FAX, :MOBILE, :EMAIL, :VAT_ID,
-      :CURRENCY_CODE, :NEWSLETTER_OPTIN, :LASTUPDATE
-    ]
-    downcase_method_names!(UPPERCASE_METHOD_NAMES)
+    property :id, from: :customer_id
+    [
+      :customer_number, :days_for_payment, :created, :payment_type, :bank_name,
+      :bank_account_number, :bank_code, :bank_account_owner, :bank_iban,
+      :bank_bic, :show_payment_notice, :account_receivable, :customer_type,
+      :top, :organization, :position, :salutation, :first_name, :last_name,
+      :address, :address_2, :zipcode, :city, :country_code, :phone, :phone_2,
+      :fax, :mobile, :email, :vat_id, :currency_code, :newsletter_optin,
+      :lastupdate
+    ].each {|property| property property }
 
     class << self
       def all
