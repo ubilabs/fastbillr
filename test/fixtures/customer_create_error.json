@@ -1,0 +1,5 @@
+{
+  "RESPONSE": {
+    "ERRORS": ["missing / invalid field: CUSTOMER_TYPE", "missing / invalid field: ZIPCODE", "missing / invalid field: CITY"]
+  }
+}

@@ -39,9 +39,13 @@ module Fastbillr
 
       def create(params)
         customer = new(params)
-        response = Fastbillr::Request.post({"SERVICE" => "customer.create", "DATA" => customer.to_uppercase_attribute_names}.to_json)
-        customer.id = response["CUSTOMER_ID"]
-        customer
+        response = Fastbillr::Request.post({"SERVICE" => "customer.create", "DATA" => upcase_keys_in_hashes(customer)}.to_json)
+        if response["ERRORS"]
+          {errors: response["ERRORS"]}
+        else
+          customer.id = response["CUSTOMER_ID"]
+          customer
+        end
       end
     end
   end
