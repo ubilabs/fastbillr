@@ -11,4 +11,5 @@ module Fastbillr
   autoload :Error, "fastbillr/error"
   autoload :Dash, "fastbillr/dash"
   autoload :Customer, "fastbillr/customer"
+  autoload :Invoice, "fastbillr/invoice"
 end
