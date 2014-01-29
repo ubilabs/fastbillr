@@ -42,7 +42,7 @@ module Fastbillr
         customer = new(params)
         response = Fastbillr::Request.post({"SERVICE" => "customer.create", "DATA" => upcase_keys_in_hashes(customer)}.to_json)
         if response["ERRORS"]
-          {errors: response["ERRORS"]}
+          raise Error.new(response["ERRORS"].first)
         else
           customer.customer_id = response["CUSTOMER_ID"]
           customer
@@ -51,11 +51,11 @@ module Fastbillr
 
       def update(customer)
         if customer.id.nil?
-          {errors: ["id is nil"]}
+          raise Error.new("id is nil")
         else
           response = Fastbillr::Request.post({"SERVICE" => "customer.update", "DATA" => upcase_keys_in_hashes(customer)}.to_json)
           if response["ERRORS"]
-            {errors: response["ERRORS"]}
+            raise Error.new(response["ERRORS"].first)
           else
             customer
           end

@@ -57,7 +57,9 @@ describe Fastbillr::Customer do
 
     it "#create error" do
       Excon.stub({:method => :post}, {:body => fixture_file("customer_create_error.json"), :status => 200})
-      assert Fastbillr::Customer.create({})[:errors]
+      assert_raises Fastbillr::Error do
+        Fastbillr::Customer.create({})
+      end
     end
 
     it "#update success" do
@@ -70,7 +72,10 @@ describe Fastbillr::Customer do
     end
 
     it "#update error" do
-      assert_equal({errors: ["id is nil"]}, Fastbillr::Customer.update(Fastbillr::Customer.new({})))
+      e = assert_raises Fastbillr::Error do
+        Fastbillr::Customer.update(Fastbillr::Customer.new({}))
+      end
+      assert_equal "id is nil", e.message
     end
   end
 end

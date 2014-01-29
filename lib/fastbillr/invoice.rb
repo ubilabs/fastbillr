@@ -30,7 +30,7 @@ module Fastbillr
         invoice_data = upcase_keys_in_hashes(comply_with_crappy_api(invoice))
         response = Fastbillr::Request.post({"SERVICE" => "invoice.create", "DATA" => invoice_data}.to_json)
         if response["ERRORS"]
-          {errors: response["ERRORS"]}
+          raise Error.new(response["ERRORS"].first)
         else
           find_by_id(response["INVOICE_ID"])
         end
@@ -39,7 +39,7 @@ module Fastbillr
       def complete(invoice)
         response = Fastbillr::Request.post({"SERVICE" => "invoice.complete", "DATA" => {"INVOICE_ID" => invoice.id}}.to_json)
         if response["ERRORS"]
-          {errors: response["ERRORS"]}
+          raise Error.new(response["ERRORS"].first)
         else
           find_by_id(response["INVOICE_ID"])
         end
@@ -47,13 +47,13 @@ module Fastbillr
 
       def cancel(invoice)
         if invoice.is_canceled == "1"
-          {errors: ["already canceled"]}
+          raise Error.new("already canceled")
         elsif invoice.type == "draft"
-          {errors: ["draft"]}
+          raise Error.new("draft")
         else
           response = Fastbillr::Request.post({"SERVICE" => "invoice.cancel", "DATA" => {"INVOICE_ID" => invoice.id}}.to_json)
           if response["ERRORS"]
-            {errors: response["ERRORS"]}
+            raise Error.new(response["ERRORS"].first)
           else
             find_by_id(invoice.id)
           end
@@ -62,11 +62,11 @@ module Fastbillr
 
       def delete(invoice)
         if invoice.type != "draft"
-          {errors: ["no draft"]}
+          raise Error.new("no draft")
         else
           response = Fastbillr::Request.post({"SERVICE" => "invoice.delete", "DATA" => {"INVOICE_ID" => invoice.id}}.to_json)
           if response["ERRORS"]
-            {errors: response["ERRORS"]}
+            raise Error.new(response["ERRORS"].first)
           else
             invoice
           end
@@ -76,7 +76,7 @@ module Fastbillr
       def setpaid(invoice)
         response = Fastbillr::Request.post({"SERVICE" => "invoice.setpaid", "DATA" => {"INVOICE_ID" => invoice.id}}.to_json)
         if response["ERRORS"]
-          {errors: response["ERRORS"]}
+          raise Error.new(response["ERRORS"].first)
         else
           find_by_id(invoice.id)
         end

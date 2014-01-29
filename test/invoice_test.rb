@@ -53,7 +53,9 @@ describe Fastbillr::Invoice do
 
       it "error" do
         Excon.stub({method: :post}, {body: fixture_file("invoice_create_error.json"), status: 200})
-        assert Fastbillr::Invoice.create({})[:errors]
+        assert_raises Fastbillr::Error do
+          assert Fastbillr::Invoice.create({})
+        end
       end
     end
 
@@ -63,7 +65,10 @@ describe Fastbillr::Invoice do
         invoice_id = JSON.parse(fixture_file("invoice.json"))["RESPONSE"]["INVOICES"][0]["INVOICE_ID"]
         invoice = Fastbillr::Invoice.find_by_id(invoice_id)
         Excon.stub({method: :post}, {body: fixture_file("invoice_complete_error.json"), status: 200})
-        assert_equal({errors: ["Invoice Error: No draft invoice chosen."]}, Fastbillr::Invoice.complete(invoice))
+        e = assert_raises Fastbillr::Error do # no draft
+          Fastbillr::Invoice.complete(invoice)
+        end
+        assert_equal "Invoice Error: No draft invoice chosen.", e.message
       end
     end
 
@@ -72,7 +77,10 @@ describe Fastbillr::Invoice do
         Excon.stub({method: :post}, {body: fixture_file("invoice.json"), status: 200})
         invoice_id = JSON.parse(fixture_file("invoice.json"))["RESPONSE"]["INVOICES"][0]["INVOICE_ID"]
         invoice = Fastbillr::Invoice.find_by_id(invoice_id)
-        assert_equal({errors: ["no draft"]}, Fastbillr::Invoice.delete(invoice))
+        e = assert_raises Fastbillr::Error do
+          Fastbillr::Invoice.delete(invoice)
+        end
+        assert_equal "no draft", e.message
       end
     end
 
@@ -81,14 +89,20 @@ describe Fastbillr::Invoice do
         Excon.stub({method: :post}, {body: fixture_file("invoice_draft.json"), status: 200})
         invoice_id = JSON.parse(fixture_file("invoice_draft.json"))["RESPONSE"]["INVOICES"][0]["INVOICE_ID"]
         invoice = Fastbillr::Invoice.find_by_id(invoice_id)
-        assert_equal({errors: ["draft"]}, Fastbillr::Invoice.cancel(invoice))
+        e = assert_raises Fastbillr::Error do
+          Fastbillr::Invoice.cancel(invoice)
+        end
+        assert_equal "draft", e.message
       end
 
       it "already canceled" do
         Excon.stub({method: :post}, {body: fixture_file("invoice_canceled.json"), status: 200})
         invoice_id = JSON.parse(fixture_file("invoice_canceled.json"))["RESPONSE"]["INVOICES"][0]["INVOICE_ID"]
         invoice = Fastbillr::Invoice.find_by_id(invoice_id)
-        assert_equal({errors: ["already canceled"]}, Fastbillr::Invoice.cancel(invoice))
+        e = assert_raises Fastbillr::Error do
+          Fastbillr::Invoice.cancel(invoice)
+        end
+        assert_equal "already canceled", e.message
       end
     end
 
@@ -110,10 +124,10 @@ describe Fastbillr::Invoice do
         invoice_id = JSON.parse(fixture_file("invoice_paid.json"))["RESPONSE"]["INVOICES"][0]["INVOICE_ID"]
         invoice = Fastbillr::Invoice.find_by_id(invoice_id)
         Excon.stub({method: :post}, {body: fixture_file("invoice_setpaid_error.json"), status: 200})
-        assert_equal(
-          {errors: ["Invoice Error: Invoice could not be set paid. Maybe it is already?"]},
+        e = assert_raises Fastbillr::Error do
           Fastbillr::Invoice.setpaid(invoice)
-        )
+        end
+        assert_equal "Invoice Error: Invoice could not be set paid. Maybe it is already?", e.message
       end
     end
   end
