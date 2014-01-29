@@ -15,7 +15,7 @@ module Fastbillr
 
     class << self
       def all
-        Fastbillr::Request.post('{"SERVICE": "customer.get"}')["CUSTOMERS"].collect { |customer| new(customer) }
+        Fastbillr::Request.post('{"SERVICE": "customer.get"}')["CUSTOMERS"].map { |customer| new(customer) }
       end
 
       def find_by_id(id)
@@ -30,12 +30,12 @@ module Fastbillr
 
       def find_by_country(country_code)
         response = Fastbillr::Request.post({"SERVICE" => "customer.get", "FILTER" => {"COUNTRY_CODE" => country_code.upcase}}.to_json)
-        response["CUSTOMERS"].collect { |customer| new(customer) }
+        response["CUSTOMERS"].map { |customer| new(customer) }
       end
 
       def search(term)
         response = Fastbillr::Request.post({"SERVICE" => "customer.get", "FILTER" => {"TERM" => term}}.to_json)
-        response["CUSTOMERS"].collect { |customer| new(customer) }
+        response["CUSTOMERS"].map { |customer| new(customer) }
       end
 
       def create(params)
