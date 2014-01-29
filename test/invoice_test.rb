@@ -20,6 +20,11 @@ describe Fastbillr::Invoice do
         expected_invoice_number = JSON.parse(fixture_file("invoice.json"))["RESPONSE"]["INVOICES"][0]["INVOICE_NUMBER"]
         assert_equal expected_invoice_number, Fastbillr::Invoice.find_by_id(expected_invoice_number).invoice_number
       end
+
+      it ".all_by_customer_id" do
+        customer_id = JSON.parse(fixture_file("invoice.json"))["RESPONSE"]["INVOICES"][0]["CUSTOMER_ID"]
+        assert_equal customer_id, Fastbillr::Invoice.all_by_customer_id(customer_id).first.customer_id
+      end
     end
 
     describe ".create" do

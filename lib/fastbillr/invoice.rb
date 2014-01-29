@@ -25,6 +25,11 @@ module Fastbillr
         new(response["INVOICES"][0]) if !response["INVOICES"].empty?
       end
 
+      def all_by_customer_id(id)
+        response = Fastbillr::Request.post({"SERVICE" => "invoice.get", "FILTER" => {"CUSTOMER_ID" => id}}.to_json)
+        response["INVOICES"].map {|invoice| new(invoice) }
+      end
+
       def create(params)
         invoice = new(params)
         invoice_data = upcase_keys_in_hashes(comply_with_crappy_api(invoice))
