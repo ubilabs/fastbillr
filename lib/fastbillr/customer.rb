@@ -20,12 +20,12 @@ module Fastbillr
 
       def find_by_id(id)
         response = Fastbillr::Request.post({"SERVICE" => "customer.get", "FILTER" => {"CUSTOMER_ID" => id.to_i}}.to_json)
-        new(response["CUSTOMERS"][0]) if response && response["CUSTOMERS"] && !response["CUSTOMERS"].empty?
+        new(response["CUSTOMERS"][0]) if !response["CUSTOMERS"].empty?
       end
 
       def find_by_customer_number(id)
         response = Fastbillr::Request.post({"SERVICE" => "customer.get", "FILTER" => {"CUSTOMER_NUMBER" => id.to_i}}.to_json)
-        new(response["CUSTOMERS"][0]) if response && response["CUSTOMERS"] && !response["CUSTOMERS"].empty?
+        new(response["CUSTOMERS"][0]) if !response["CUSTOMERS"].empty?
       end
 
       def find_by_country(country_code)
