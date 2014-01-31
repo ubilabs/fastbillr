@@ -26,8 +26,16 @@ module Fastbillr
       end
 
       def all_by_customer_id(id)
-        response = Fastbillr::Request.post({"SERVICE" => "invoice.get", "FILTER" => {"CUSTOMER_ID" => id}}.to_json)
-        response["INVOICES"].map {|invoice| new(invoice) }
+        result = []
+        offset = 0
+        limit = MAX_RESULT_ELEMENTS
+        begin
+          invoices = Fastbillr::Request.post({"SERVICE" => "invoice.get", "FILTER" => {"CUSTOMER_ID" => id}, "OFFSET" => offset, "LIMIT" => limit}.to_json)["INVOICES"]
+          last_invoice = invoices.last
+          result += invoices.map {|invoice| new(invoice) }
+          offset = result.count
+        end while invoices.count == limit
+        result
       end
 
       def create(params)

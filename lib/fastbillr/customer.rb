@@ -15,7 +15,16 @@ module Fastbillr
 
     class << self
       def all
-        Fastbillr::Request.post('{"SERVICE": "customer.get"}')["CUSTOMERS"].map { |customer| new(customer) }
+        result = []
+        offset = 0
+        limit = MAX_RESULT_ELEMENTS
+        begin
+          customers = Fastbillr::Request.post({"SERVICE" => "customer.get", "OFFSET" => offset, "LIMIT" => limit}.to_json)["CUSTOMERS"]
+          last_customer = customers.last
+          result += customers.map {|customer| new(customer) }
+          offset = result.count
+        end while customers.count == limit
+        result
       end
 
       def find_by_id(id)
